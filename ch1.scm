@@ -345,3 +345,34 @@ A(x, y) = { 0    , y = 0
         )
   )
 )
+
+; Exercise 1.11
+; f(n) = n if n < 3
+; f(n) = f(n-1) + 2f(n-2) + 3f(n-3) if n>=3
+; f(3) = f(2) + 2f(1) + 3f(0)
+; f(3) = 2 + 2 + 0
+
+; Recursive
+(define (f n)
+  (if (< n 3)
+      n
+      (+ (f (- n 1))
+         (* 2 (f (- n 2)))
+         (* 3 (f (- n 3)))
+      )
+  )
+)
+
+; Iterative
+(define (f n)
+  (define (f-iter sum counter)
+    (if (> (- n 3) counter)
+      sum
+      (f-iter
+
+        (- counter 1)
+      )
+    )
+  )
+  (f-iter n (- n 1))
+)
